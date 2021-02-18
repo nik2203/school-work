@@ -1,0 +1,39 @@
+20  SPACE
+21  EXCLAMATION MARK            
+A1  INVERTED EXCLAMATION MARK
+22  QUOTATION MARK              
+A2  CENT SIGN
+23  NUMBER SIGN                 
+A3  POUND SIGN
+24  DOLLAR SIGN                 
+A4  CURRENCY SIGN
+25  PERCENT SIGN                
+A5  YEN SIGN
+26  AMPERSAND                  
+A6  BROKEN BAR
+27  APOSTROPHE                  
+A7  SECTION SIGN
+28  LEFT PARENTHESIS            
+A8  DIAERESIS
+29  RIGHT PARENTHESIS           
+A9  COPYRIGHT SIGN
+2A  not known                    
+AA  FEMININE ORDINAL INDICATOR
+2B  PLUS SIGN                  
+AB  LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
+2C  COMMA                       
+AC  NOT SIGN
+2D  HYPHEN-MINUS                
+2E  FULL STOP                  
+2F  SOLIDUS                   
+30  DIGIT ZERO                 
+31  DIGIT ONE                   
+32  DIGIT TWO                   
+33  DIGIT THREE                 
+34  DIGIT FOUR                  
+35  DIGIT FIVE                  
+36  DIGIT SIX                   
+37  DIGIT SEVEN                
+38  DIGIT EIGHT                
+39  DIGIT NINE                
+3A  COLON      

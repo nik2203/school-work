@@ -1,0 +1,50 @@
+Q1:
+a) Output: Error
+
+b) It will return an error. factorial is a part of the namespace of the program itself and not the math module's namespace.
+
+c) Output: 78,90
+The variable x is being assigned the value of 90 in the local space of the function. If print(x) was called after the function call, then it would print 78 as the assignment is only in the function.
+
+Q2)
+i)c)
+ii)b)
+iii)b)Python first searches the local namespace, then the global namespace and finally the built-in namespace.
+
+Q3)
+a) Docstring
+b)help <module name>
+
+Q4)
+First method: help <module name>
+Second method: dir()
+
+Q5)
+Maximum value of 'Go'=3
+Minimum value of 'Go'=0
+i.120$$75$$11$$
+the possible values of i are 0,1,2. In option ii and iii, i is starting off at 1 which is not possible as no start has been specified. In option i, i is iterating through the list X with values 0,1,2.
+
+Q6)
+i.)matplot
+ii.)matplot
+iii.)urllib
+iv.)
+v.)urllib
+vi.)cmath
+vii.)
+viii.)Built-In
+
+Q7)
+A package is a collection of modules whereas a module is a python program that consists of functions, variables, docstrings, constants, etc.
+
+Q8)
+A namespace is a way to maintain a unique name for every object in Python. A scope is the region from which a particular variable is accessible. Variable scope resolution follows the LEGB rule: Local, Enclosing(Nested or non-local), Global, Built-in. If a variable is not found to be defined in Local, it moves to to the non-local
+
+Q9)PYTHONPATH is an environment variable where pyhon searches for its modules and packages. You can use it to set additional directories and user defined packages.
+
+Q10)
+i)__init__.py is a python file that helps recognise a folder as a package. It may or may not be empty.
+ii)import myPackage/.subfolder3/.registration.register
+iii)import myPackage/.subfolder1/.subfolder2/.user
+iv)if name=='__main__':

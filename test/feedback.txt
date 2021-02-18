@@ -1,0 +1,2 @@
+Troubleshoot:
+If you are hearing feedback or echoes in your meeting, that means there is a device in the meeting that is channeling your audio back.

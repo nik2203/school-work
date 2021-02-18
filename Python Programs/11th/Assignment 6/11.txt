@@ -1,0 +1,6 @@
+pro=s[:s.find(':'):]
+dom=s[s.find(':')+3:s.find('/',s.find(':')+3):]
+brepoi=s.find(s[s.find(':')+3:s.find('/',s.find(':')+3):])
+fol=s[-1:s.find('/',-1,s.find('/',s.find(':')+3)):-1]
+print('The protocol is '+pro+', the domain'\
+      ' is '+dom+' and the folder name is '+fol)

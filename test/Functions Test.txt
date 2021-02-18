@@ -1,0 +1,84 @@
+Q1:
+The different types of functions are:
+-Built-in functions: Functions whose functionality is pre-defined in Python
+-User defined functions: Functions that the user creates in their programs are called user defined functions
+-Functions from modules: Functions that are defined in an external module that must be imported before using them.
+
+Q2:
+1
+2
+1
+1
+1
+3
+3
+
+Q3:
+i. function1()
+ii function1(z=10)
+iii. function1(x=10,z=20)
+iv. function1(1,2,y=3)
+This will give an error as y has been assigned the value of 2 by positional argument but y is being defined as 3 again by keyword argument and so it will give an error
+
+Q4:
+simpleDisp() - the function is being called before it is defined.
+def square(x) - the header is incorrect, it should be 'def square(x):'. Without the colon, the following line is not considered as a block
+print(square()) - no argument is given where it is required
+def multiply(x=3,y): - keyword arguments cannot be declared before a postional argument
+
+Q5:
+i. None
+ii. The function name and parameters (optional)
+iii. The local environment
+iv. C. def f(a=1,b=1,c=2):
+v. The parameter shouold be prefixed with *. Eg: *<parameter>
+
+Q6:
+import random
+
+def check_speed(speed):
+    global off
+    global val
+    if speed<70 and speed>0:
+        return speed
+    global dem
+    if speed>70:
+        off=1
+        for i in range(70,speed+5,5):
+            dem+=1
+        if dem<12:
+            off=1
+        elif dem>=12:
+            off=2
+    elif speed<=0:
+        val=1
+
+dem=0
+off=0
+val=0
+lic_no=''
+for i in range(5):
+    lic_no=lic_no+str(random.randint(0,9))
+x=int(input('enter driver speed '))
+
+res=check_speed(x)
+
+if val==0:
+    if off==0:
+        print('License Number:'+lic_no+'\n'
+              'Demerit Points:',dem,'\n'
+              'Status: OK')
+    if off==1:
+        print('License Number:'+lic_no+'\n'
+              'Demerit Points:',dem,'\n'
+              'Status: Warning')
+    if off==2:
+        print('License Number:'+lic_no+'\n'
+          'Demerit Points:',dem,'\n'
+          'Status: License Suspended')
+else:
+    print('Invalid Data')
+
+Q7:
+a. 
+b. i. Declare L to be a global parameter in the function

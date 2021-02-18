@@ -1,0 +1,7 @@
+res=[]
+for i in range(len(l)):
+    if x in l[i]:
+        res.append(l[i][x])
+    else:
+        continue
+res.sort()
