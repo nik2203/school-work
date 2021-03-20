@@ -20,9 +20,9 @@ def shift_so(ar,n):
 
 ar=eval(input('enter an array containing both negative and positive elements '))
 n=len(ar)
-x=int(input('do you want it to b:/n'
-            '1. sorted/n'
-            '2. unsorted/n'))
+x=int(input('do you want it to b:\n'
+            '1. sorted\n'
+            '2. unsorted\n'))
 if x==1:
     print(shift_so(ar,n))
 if x==2:

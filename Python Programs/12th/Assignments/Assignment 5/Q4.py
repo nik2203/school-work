@@ -28,6 +28,7 @@ with open('diNero.csv','r') as fh:
             highest.append(i)
     print('His highest rated movie(s) is/are:\n',highest,sep='\n')
     print('His lowest rated movie(s) is/are\n',lowest,sep='\n')
+    
 
 
 with open('diNero.csv','a') as fh:
