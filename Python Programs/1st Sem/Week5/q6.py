@@ -1,0 +1,5 @@
+num=input('Enter a list of comma-separated numbers]n')
+numl=num.split(',')
+numt=tuple(numl)
+print('The list of numbers is',numl)
+print('The tuple of numbers is',numt)
