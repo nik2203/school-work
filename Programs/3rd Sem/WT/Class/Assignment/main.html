@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+           PES Students Survey Form
+        </title>
+        <link rel="icon" type="image/x-icon" href="assets/pes.ico">
+        <link rel="stylesheet" href="assets/main.css">
+    </head>
+    <body>
+        <div class="image">
+            <center>
+                <img src="assets/pes.png" height="200" width="200">
+            </center>
+        </div>
+        <br>
+        <div class="table">
+            <table>
+                <caption>
+                PES Student Count Information
+                </caption>
+                <br>
+                <tr>
+                    <th>
+                        Campus
+                    </th>
+                    <th>
+                        Course
+                    </th>
+                    <th colspan="2">
+                        No. Of Students
+                    </th>
+                </tr>
+                <tr>
+                    <td rowspan="2"><b>RR Campus</b></td>
+                    <td>B. Tech</td>
+                    <td>500</td>
+                </tr>
+                <tr>
+                    <td>M. Tech</td>
+                    <td>150</td>
+                </tr>
+                <tr>
+                    <td rowspan="2"><b>EC Campus</b></td>
+                    <td>B. Tech</td>
+                    <td>500</td>
+                </tr>
+                <tr>
+                    <td>M. Tech</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td colspan="3" id="total">
+                        Total Students = 1250
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <br>
+        <h2>
+            PES Students Survey Form
+        </h2>
+        <br>
+        <div class="form">
+            <form id="formid">
+                <br>
+                <label for="sname">Name</label>
+                <br><br>
+                <input type="text" id="sname" placeholder="Enter your name" required>
+                <br><br>
+                <label for="semail">Email</label>
+                <br><br>
+                <input type="email" id="semails" placeholder="Enter your email" pattern="+@gmail\.com" required>
+                <br><br>
+                <label for="sage">Age</label>
+                <br><br>
+                <input type="number" id="sage" placeholder="Enter your age" min="0" max="99" required>
+                <br><br>
+                <label for="stel">Mobile</label>
+                <br><br>
+                <input type="tel" id="stel" placeholder="Enter your number" pattern="[0-9]{10}" maxlength="10" required>
+                <br><br>
+                <label for="scourse">Course</label>
+                <br><br>
+                <select id="scourse" required>
+                    <option value="course">Select Your Course</option>
+                    <option value="btechrr">B. Tech (RR)</option>
+                    <option value="btechec">B. Tech (EC)</option>
+                    <option value="mtechrr">M. Tech (RR)</option>
+                    <option value="mtechec">M. Tech (EC)</option>
+                </select>
+                <br><br>
+                <div class="fieldbox">
+                    <fieldset>
+                        <legend>Are you interested in joining clubs?</legend>
+                        <input type="radio" id="yes" name="clubs" required>
+                        <label class="radio" for="yes">Yes</label>
+                        <br><br>
+                        <input type="radio" id="no" name="clubs" required>
+                        <label class="radio" for="no">No</label>
+                        <br><br>
+                    </fieldset>
+                </div>
+                <div class="fieldbox">
+                    <fieldset>
+                        <legend>What clubs are you interested in?</legend>
+                        <input type="checkbox" id="technical-cs" required>
+                        <label for="technical-cs">Technical-CS</label>
+                        <br><br>
+                        <input type="checkbox" id="technical-other" required>
+                        <label for="technical-other">Technical-Other</label>
+                        <br><br>
+                        <input type="checkbox" id="nontechnical" required>
+                        <label for="nontechnical">Non-Technical</label>
+                        <br><br>
+                    </fieldset>
+                </div>
+                <label for="ssuggest">Leave Your Suggestions Below</label>
+                <br><br>
+                <textarea rows="15" cols="30" required></textarea>
+                <br><br>
+                <center>
+                    <button type="submit" id="submit" onclick="submitalert()"> Submit </button>
+                    <br><br>
+                    <button type="reset" id="reset"> Reset </button>
+                </center>
+            </form>
+        </div>
+
+        <!-- script section -->
+        <script type="text/javascript">
+            var form = document.getElementById("formid");
+
+            function submitalert(){
+                if(form.checkValidity()){
+                    alert("The form was successfully submitted");
+                }
+                else{
+                    alert("The form is not yet filled");
+                }
+            }
+        </script>
+    </body>
+</html>
