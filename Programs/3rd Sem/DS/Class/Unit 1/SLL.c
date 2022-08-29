@@ -18,7 +18,7 @@ void init(LLIST *ptr){ //initialises a linked list
 
 NODE* create_node(int ele){  //function to create node where data is a user defined value
 	NODE *temp;
-	temp=(NODE*)malloc(sizeof(NODE));
+	temp=(NODE*)malloc(sizeof(NODE));  //dynamically assigns memory for the node
 	if(temp!=NULL){
 		temp->data=ele;
 	}
@@ -26,7 +26,7 @@ NODE* create_node(int ele){  //function to create node where data is a user defi
 }
 
 void insert_front(LLIST *ptr, int ele){  //function to insert a node at the front of the linked list
-	NODE *temp;
+	NODE *temp;  //creates temporary node to store the data value to be inserted into the linked list
 	temp=create_node(ele);
 	temp->link=ptr->head;
 	ptr->head=temp;
@@ -70,7 +70,7 @@ int count_node(LLIST *ptr){   //func to count total number of nodes in the linke
 		return 9999;
 	}
 	else{
-		while (cur->link!=NULL)
+		while (cur->link!=NULL) //as count is initialised to 1 the while loop condition is cur->link!=NULL instead of cur!=NULL
 		{
 			cur=cur->link;
 			count+=1;  //update count after iterating through node
@@ -91,7 +91,7 @@ int delete_front(LLIST *ptr){  //func to delete node at the front of the linked 
 	return x;
 }
 
-int delete_rear(LLIST *ptr){//func to delete node at the rear of the linked list
+int delete_rear(LLIST *ptr){ //func to delete node at the rear of the linked list
 	NODE *cur=ptr->head;
 	NODE *prev=NULL;
 	if(ptr->head==NULL){
@@ -106,7 +106,7 @@ int delete_rear(LLIST *ptr){//func to delete node at the rear of the linked list
 			prev=cur;
 			cur=cur->link;
 		}
-		prev->link=NULL;
+		prev->link=NULL;  //assigns previous node's link to NULL, severing the connection between previous node and current node
 		int x=cur->data;
 		free(cur);
 		return x;
@@ -123,19 +123,19 @@ void delete_alternate(LLIST *ptr){
 		printf("The list is empty\n");
 		return;
 	}
-	else if(total==1){
+	else if(total==1){  //if the total number of nodes in the list is 1 only the first node needs to be deleted
 		delete_front(ptr);
 		return;
 	}
 	else{
 		NODE *prev=NULL;
 		while(cur->link!=NULL){
-			if(count%2==0){
+			if(count%2==0){  //if the current node is an even node, moves current and previous pointers up
 				prev=cur;
 				cur=cur->link;
-				count++;
+				count++; //increments count
 			}
-			else if(count==1){
+			else if(count==1){  //removing first node when there are more than 2 nodes in the linked list
 				prev=cur;
 				cur=cur->link;
 				ptr->head=cur;
@@ -143,7 +143,7 @@ void delete_alternate(LLIST *ptr){
 				free(prev);
 				count++;
 			}
-			else{
+			else{  //removing odd nodes
 				NODE *temp=cur;
 				cur=cur->link;
 				prev->link=cur;
@@ -152,7 +152,7 @@ void delete_alternate(LLIST *ptr){
 				count++;
 			}
 		}
-		if(total%2==1){
+		if(total%2==1){ //removes the last node of the list if the initial length of list was odd, as it is also an odd node
 			prev->link=NULL;
 			free(cur);
 		}
@@ -160,13 +160,13 @@ void delete_alternate(LLIST *ptr){
 }
 
 int search_list(LLIST *ptr,int ele){  //func to search list for node with specific element
-	int count=1;  //variable to keep track of what node is currently being pointed to
+	int count=1;  //variable to keep track of what the index value of node currently being pointed to is
 	NODE *cur=ptr->head;
 	if(ptr->head==NULL){
 		return 9999;
 	}
 	else{
-		while(cur->link!=NULL){
+		while(cur->link!=NULL){ //iterates through list and checks if data value of each node is equal to the data value being searched for
 			if(cur->data!=ele){
 				cur=cur->link;
 				count+=1;
@@ -179,18 +179,18 @@ int search_list(LLIST *ptr,int ele){  //func to search list for node with specif
 }
 
 //Assignment question: WAF to insert a node in between a particular node
-//pos=position
+//pos is short for position
 void insert_between(LLIST *ptr,int pos,int ele){
     NODE *temp=create_node(ele);
     int count=1;
-    if(ptr->head==NULL){
+    if(ptr->head==NULL){  //if list is empty, regardless of position submitted, node is inserted at the front
         ptr->head=temp;
         temp->link=NULL;
     }
-    else if(count_node(ptr)==1){
+    else if(count_node(ptr)==1){  //if list has one node, regardless of position submitted, node is inserted *between* head node and first node
         insert_front(ptr,ele);
     }
-    else if((pos>count_node(ptr) && count_node(ptr)>1)||pos<1){
+    else if((pos>count_node(ptr) && count_node(ptr)>1)||pos<1){  //accounts for invalid position values
         printf("Given position is out of range\n");
         return;
     }
@@ -207,7 +207,7 @@ void insert_between(LLIST *ptr,int pos,int ele){
     }
 }
 
-/*int reverse_list(LLIST *ptr1, LLIST *ptr2){  // alternate, less efficient, func to reverse list
+/*int reverse_list(LLIST *ptr1, LLIST *ptr2){  // alternate, less efficient, func to reverse list involving adding nodes to a second list in reverse order of the first
     //*ptr2 is pointer to second list which is going to accept values from initial linked list in reverse
     NODE *cur=ptr1->head;
     if(ptr1->head==NULL){
@@ -225,7 +225,7 @@ void insert_between(LLIST *ptr,int pos,int ele){
 
 //Assignment question: WAP to reverse a linked list
 
-int reverse_list(LLIST *ptr){ //func to reverse list
+int reverse_list(LLIST *ptr){ //func to reverse list in place
     NODE *cur=ptr->head;
     NODE *prev=NULL;  //initialises pointer to store previous node
     NODE *next=NULL;  //initialises pointer to store next node
@@ -246,9 +246,9 @@ int reverse_list(LLIST *ptr){ //func to reverse list
     }
 }
 
-void merge_list(LLIST *ptr1,LLIST *ptr2){
+void merge_list(LLIST *ptr1,LLIST *ptr2){ //function to merge two lists l1 and l2, with l2 being added to the end of l1
 	NODE *cur=ptr1->head;
-	if(cur==NULL){
+	if(cur==NULL){ //if l1 is empty, appends all node of l2 to l1
 		NODE *cur1=ptr2->head;
 		while(cur1!=NULL){
 			insert_rear(ptr1,cur1->data);
@@ -256,18 +256,18 @@ void merge_list(LLIST *ptr1,LLIST *ptr2){
 		}
 	}
 	else{
-		while(cur->link!=NULL){
+		while(cur->link!=NULL){  //if l1 is not empty, the link of last node of l1 is set to first node of l2
 			cur=cur->link;
 		}
 		cur->link=ptr2->head;
 	}
 }
 
-/*void order_list(LLIST *ptr,int ord){
+/*void order_list(LLIST *ptr,int ord){  //sorts the data elements of a list to create an ordered list
 	int size=count_node(ptr);
 	printf("%d\n\n",size);
 	int i,j,ele;
-	if(ord==1){
+	if(ord==1){  //1 is for ascending order
 		for(i=0; i<size-1; i++){
 			NODE *cur=ptr->head;
 			for(j=0; j<size-i-1; j++){
@@ -280,7 +280,7 @@ void merge_list(LLIST *ptr1,LLIST *ptr2){
 			}
 		}
 	}
-	else if(ord==2){
+	else if(ord==2){  //2 is for descending order
 		for(i=0; i<size-1; i++){
 			NODE *cur=ptr->head;
 			for(j=0; j<size-i-1; j++){
@@ -293,34 +293,34 @@ void merge_list(LLIST *ptr1,LLIST *ptr2){
 			}
 		}
 	}
-	else{
+	else{  //any other option value apart from 1 and 2 is rejected as invalid input
 		printf("Invalid input\n");
 		return;
 	}	
 }*/
 
-void order(LLIST *ptr,int ele,int choice){
+void order(LLIST *ptr,int ele,int choice){  //orders a list as it receives inputs
 	NODE *temp=create_node(ele);
-	if(ptr->head==NULL){
+	if(ptr->head==NULL){  //if the list is empty, first element is added
 		ptr->head=temp;
 		temp->link=NULL;
 	}
 	else{
-		if(choice==1){
+		if(choice==1){  //option 1 is for ascending order
 			NODE *first=ptr->head;
 			NODE *prev=NULL;
-			if(temp->data<first->data){
+			if(temp->data<first->data){ 
 				temp->link=first;
 				ptr->head=temp;
 			}
-			while(first!=NULL&&temp->data>first->data){
+			while(first!=NULL&&temp->data>first->data){ //iterates through list till a suitable position for insertion is found
 				prev=first;
 				first=first->link;
 			}
 			prev->link=temp;
 			temp->link=first;
 		}
-		else if(choice==2){
+		else if(choice==2){ //option 2 is for descending order
 			NODE *first=ptr->head;
 			NODE *prev=NULL;
 			if(temp->data>first->data){
@@ -334,7 +334,7 @@ void order(LLIST *ptr,int ele,int choice){
 			prev->link=temp;
 			temp->link=first;
 		}
-		else{
+		else{ //any option values other than 1 and 2 are rejected
 			printf("Invalid choice");
 			return;
 		}
@@ -383,7 +383,7 @@ int main(){
 			case 5: printf("The list is:\n");
                     display(&myList);
 					break;
-			case 6: printf("Enter element to search for");
+			case 6: printf("Enter element to search for\n");
 					scanf("%d",&ele);
 					int ret=search_list(&myList,ele);
 					if(ret==9999){
@@ -440,7 +440,7 @@ int main(){
 					if(ele_no==0){
 						printf("The merged list is:\n");
 						display(&myList);
-						printf("\n\n");
+						printf("\n");
 					}
 					else{
 						printf("Enter the elements in order\n");

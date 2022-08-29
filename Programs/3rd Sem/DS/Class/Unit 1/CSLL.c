@@ -2,10 +2,17 @@
 #include<stdlib.h>
 
 
-typedef struct node{
+//functions and structure for circular singly linked list
+
+typedef struct node{  //structure to define node for csll
 	int data;
 	struct node* link;
 }NODE;
+
+
+//while it is possible to use two structures, one for the node and one for the list
+//we are using one structure for the sake of convenience
+
 
 /*typedef struct cslist{
 	NODE *head;
@@ -19,26 +26,29 @@ CSLIST *init(){
 	}
 }*/
 
-NODE *create_node(){
-	NODE *temp=(NODE*)malloc(sizeof(NODE));
+NODE *create_node(){  //function to create a node 
+	NODE *temp=(NODE*)malloc(sizeof(NODE));  //dynamically allocates memory for a node
 	if(temp!=NULL){
 		return temp;
 	}
 }
 
-void insert_front(NODE *ptr,int ele){
-	NODE *temp=create_node();
+void insert_front(NODE *ptr,int ele){ //function to insert a node at the beginning of a list
+	NODE *temp=create_node(); //creates a temporary node that holds the data value to be added to the list
 	temp->data=ele;
-	NODE *first=ptr->link;
+	NODE *first=ptr->link; //pointer to first node of the list
+	//this accounts for the case where the list is empty as well as in that case first=ptr->link=ptr
+	//the expression temp->link=first in that case is equivalent to temp->link=ptr
+	//hence there is no need to write a seperate case accomodating an empty list
 	ptr->link=temp;
 	temp->link=first;
 }
 
-void insert_rear(NODE *ptr,int ele){
+void insert_rear(NODE *ptr,int ele){ //function to insert a node at the end of a list
 	NODE *temp=create_node();
 	temp->data=ele;
 	NODE *cur=ptr->link;
-	while(cur->link!=ptr){
+	while(cur->link!=ptr){ //iterates through
 		cur=cur->link;
 	}
 	cur->link=temp;
