@@ -1,3 +1,3 @@
 # school-work
 
-Compilation of CS school work from 11th grade onwards.
+A repository of CS school work and mini - projects from 10th onwards
