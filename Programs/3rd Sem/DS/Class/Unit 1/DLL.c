@@ -113,29 +113,28 @@ int delete_front(DLIST *ptr){  //function to delete a node from the rear of a li
 	return x;
 }
 
-int delete_rear(DLIST *ptr){ //function to delete a node from the rear of the list
+int delete_rear(DLIST *ptr){
 	int x;
+	NODE *cur=ptr->head;
 	if(ptr->head==NULL){
 		return 9999;
 	}
-	else if(ptr->no_node==1){  //case where only one element is in the list
-		x=ptr->head->data;
-		free(ptr->head);
+	else if(ptr->no_node==1){
+		x=cur->data;
+		free(cur);
 		ptr->head=NULL;
-		ptr->no_node--;
 		return x;
 	}
 	else{
-		NODE *cur=ptr->head;
 		NODE *prev=NULL;
-		while(cur->next!=NULL){ //iterates through the list till the last element is found
+		while(cur->next!=NULL){
 			prev=cur;
 			cur=cur->next;
 		}
-		prev->next=NULL;
 		x=cur->data;
+		prev->next=NULL;
 		free(cur);
-		ptr->no_node--; //decreases node count after node is deleted
+		ptr->no_node--;
 		return x;
 	}
 }
@@ -289,6 +288,14 @@ int main(){
 					insert_rear(list,ele);
 					break;
 			case 3: x=delete_front(list);
+					if(x==9999){
+						printf("The list is empty\n");
+					}
+					else{
+						printf("The deleted element is %d \n",x);
+					}
+					break;
+			case 4: x=delete_rear(list);
 					if(x==9999){
 						printf("The list is empty\n");
 					}
