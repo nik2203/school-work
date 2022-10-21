@@ -1,0 +1,27 @@
+body{
+    font-size: 16px;
+    background-color: rgb(48, 144, 104);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+img{
+    margin: 10px;
+}
+
+audio{
+    margin: 10px;
+}
+
+.div{
+    display: flex;
+    align-items: center;
+    padding: 12px;
+}
+
+.h{
+    margin: 10x;
+}
+
+.price{
+    margin: 10px;
+}
