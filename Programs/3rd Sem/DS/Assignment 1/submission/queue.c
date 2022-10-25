@@ -15,7 +15,7 @@ queue_t* create_queue()   // return a newly created empty queue
 
 void enqueue(queue_t* q, int data) // TODO: insert data at the end of a queue
 {
-	node_t* temp = (node_t*)malloc(sizeof(node_t));
+	node_t* temp = (node_t*)malloc(sizeof(node_t)); // Creating a temporary node and dynamically assigning memory
 	temp->data=data;
 	if(q->size==0){
 		q->front=q->rear=temp;
@@ -36,7 +36,7 @@ int dequeue(queue_t* q) 	// TODO: return the data at the front of a queue and re
 	if(q->size==0){
 		return -1;
 	}
-	else if(q->size==1){
+	else if(q->size==1){ // checking is the queue contains only one element and then freeing the first element
 		node_t* first=q->front;
 		x=first->data;
 		free(first);
@@ -46,11 +46,11 @@ int dequeue(queue_t* q) 	// TODO: return the data at the front of a queue and re
 	}
 	else{
 		node_t* first=q->front;
-		node_t* second=first->next;
+		node_t* second=first->next; // As we know that queue follows First in First out so when dequeing the first elemtn should be deleted. 
 		x=first->data;
 		second->prev=NULL;
 		q->front=second;
-		free(first);
+		free(first); // as the second node becomes the first node making the prev pointer pointing to NULL
 		q->size--;
 		return x;
 	}
@@ -62,7 +62,7 @@ int front(queue_t* q) // TODO: return the data at the front of a queue. Return -
 		return -1;
 	}
 	else{
-		int x=q->front->data;
+		int x=q->front->data; // Returns the first element
 		return x;
 	}
 }
