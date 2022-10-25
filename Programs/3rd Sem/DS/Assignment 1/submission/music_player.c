@@ -36,11 +36,11 @@ void clear_music_queue(music_queue_t *q) // clear the queue q
 void add_song(playlist_t *playlist, int song_id, int where) // TODO: add a song id to the end of the playlist
 {
 	if(where == -1){
-		insert_front(playlist->list,song_id);
+		insert_front(playlist->list,song_id); // Checking if it's empty and adding from the front
 		playlist->num_songs++;
 	}
 	else if(where == -2){
-		insert_back(playlist->list,song_id);
+		insert_back(playlist->list,song_id);//
 		playlist->num_songs++;
 	}
 	else if(where > 0){
@@ -58,12 +58,12 @@ void delete_song(playlist_t *playlist, int song_id) // TODO: remove song id from
 		return;
 	}
 	else{
-		song_t *del = search_song(playlist, song_id);
+		song_t *del = search_song(playlist, song_id); // returns a pointer pointing to that song
 		if(del->prev==NULL){
-			delete_front(playlist->list);
+			delete_front(playlist->list); // if it's the only song in the playlist then deleting from the front
 		}
 		else if(del->next==NULL){
-			delete_back(playlist->list);
+			delete_back(playlist->list); // if there's no other song after it so calling the delete back function
 		}
 		else{
 			delete_node(playlist->list,song_id);
@@ -80,19 +80,19 @@ song_t *search_song(playlist_t *playlist, int song_id) // TODO: return a pointer
 
 void search_and_play(playlist_t *playlist, int song_id) // TODO: play the song with given song_id from the list(no need to bother about the queue. Call to this function should always play the given song and further calls to play_next and play_previous)
 {
-	song_t *sear = search_song(playlist, song_id);
+	song_t *sear = search_song(playlist, song_id); // Making a new node that has the given song
 	playlist->last_song=sear;
 	if (sear == NULL){
 		return;
 	}
 	else{
-		play_song(sear->data);
+		play_song(sear->data); // Playing that song 
 	}
 }
 
 void play_next(playlist_t *playlist, music_queue_t *q) // TODO: play the next song in the linked list if the queue is empty. If the queue if not empty, play from the queue
 {
-	if(empty(q)){
+	if(empty(q)){ // Playing it from the linked list if the queue is empty 
 		if(playlist->last_song == NULL || playlist->last_song->next == NULL){
 			playlist->last_song = playlist->list->head;
 			play_song(playlist->last_song->data);
@@ -104,13 +104,13 @@ void play_next(playlist_t *playlist, music_queue_t *q) // TODO: play the next so
 		return;
 	}
 	else{
-		play_from_queue(q);
+		play_from_queue(q); // Playing from the queue if it's not empty 
 	}
 }
 
 void play_previous(playlist_t *playlist) // TODO: play the previous song from the linked list
 {
-	if(playlist->num_songs!=0){
+	if(playlist->num_songs!=0){ // Playing the previous song in the linked list
 		if(playlist->last_song == NULL || playlist->last_song->prev == NULL){
 			playlist->last_song = playlist->list->tail;
 			play_song(playlist->last_song->data);
@@ -141,8 +141,8 @@ void reverse(playlist_t *playlist) // TODO: reverse the order of the songs in th
 		return;
 	}
 	else{
-		song_t *cur=playlist->list->head;
-		song_t *swap=playlist->list->head;
+		song_t *cur=playlist->list->head; // making a new node that points to first song
+		song_t *swap=playlist->list->head; // this node is used to change the order
 		song_t *revtemp=NULL;
 		song_t *prev=NULL;
 
@@ -218,7 +218,7 @@ void k_swap(playlist_t *playlist, int k) // TODO: swap the node at position i wi
 
 void shuffle(playlist_t *playlist, int k) // TODO: perform k_swap and reverse
 {
-	k_swap(playlist, k);
+	k_swap(playlist, k); // randomly shuffles the playlist
 	reverse(playlist);
 }
 
