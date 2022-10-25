@@ -8,4 +8,4 @@
 #### - HTML/CSS/JS
 
 
-## Please read the [Contributing Guidelines](/Contributing Guidlines) before submitting a PR
+## Please read the [Contributing Guidelines](Contributing Guidlines) before submitting a PR
