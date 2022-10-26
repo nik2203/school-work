@@ -68,13 +68,13 @@ struct node *search(int key, struct node *users)
 {
     if (users == NULL || users->id == key)
         return users;
-    if (key > users->id)
-        return (search(key, users->right));
-    return (search(key, users->left));
+    if (key > users->id)    
+        return (search(key, users->right)); // Checking if key is greater than the id and moving to the right of the tree (Recursion)
+    return (search(key, users->left));  // If it's vice-versa going towards the left of the tree (Recursion)
 }
 
 // see document for explanattion
-struct node *refineUser(struct node *user, struct node *users)
+struct node *refineUser(struct node *user, struct node *users) // if the user has an ID that is already present in the tree we increase the ID by 1 and check again, until the next nearest available ID is found and inserted.
 {
     user->left = user->right = NULL;
     node *cur = search(user->id, users);
@@ -131,7 +131,7 @@ struct node *refineUser(struct node *user, struct node *users)
 struct node *insertUser(struct node *root, int id, struct node *user)
 {
     user->left = user->right = NULL;
-    if (root == NULL)
+    if (root == NULL) // If the tree is empty inserting it as the node
     {
         root = user;
         return root;
@@ -142,9 +142,9 @@ struct node *insertUser(struct node *root, int id, struct node *user)
     {
         prev = cur;
         if (id > cur->id)
-            cur = cur->right;
+            cur = cur->right; // if it's greater than node moving towards the right 
         else
-            cur = cur->left;
+            cur = cur->left; // if it's greater than node moving towards the left
     }
     if (id > prev->id)
         prev->right = user;
@@ -158,7 +158,7 @@ struct node *insertUser(struct node *root, int id, struct node *user)
 void friends(int id, struct node *users)
 {
     int i;
-    node *cur = search(id, users);
+    node *cur = search(id, users); // Returns the pointer pointing to given element
     if (cur->numfren > 0)
     {
         for (i = 0; i < cur->numfren; i = i + ONE)
@@ -187,7 +187,7 @@ struct node *minValueNode(struct node *node)
 // deletes itself from its friend's nodes
 void deleteFriends(int key, struct node *users)
 {
-    if (users == NULL)
+    if (users == NULL)  // For each friend of the user with ID=key, delete itself from its friend’s friend list.
     {
         return;
     }
@@ -218,7 +218,7 @@ void deleteFriends(int key, struct node *users)
 // Deleting a node
 struct node *deleteNode(struct node *root, int key)
 {
-    if (root == NULL)
+    if (root == NULL)    //Delete the user with ID = key, where root is the pointer to the root node of the tree.
     {
         return root;
     }
@@ -241,7 +241,7 @@ struct node *deleteNode(struct node *root, int key)
     }
     if (cur == NULL)
     {
-        return (root);
+        return (root);  // Returns the root of the updated tree.
     }
     if (cur->left == NULL)
     {
@@ -292,7 +292,7 @@ void printInOrder(node *myusers)
     if (myusers == NULL)
         return;
     printInOrder(myusers->left);
-    printf("%d %s\n", myusers->id, myusers->name);
+    printf("%d %s\n", myusers->id, myusers->name); // Prints the IDs of all users in ascending order inorder traversal
     printInOrder(myusers->right);
 }
 
