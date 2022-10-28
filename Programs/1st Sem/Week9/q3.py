@@ -1,10 +1,10 @@
 def fib(n):
-    if n==0:
+    if n==0:#base condition
         return 0
-    if n==1:
+    if n==1:#base condition
         return 1
     else:
-        return fib(n-1)+fib(n-2)
+        return fib(n-1)+fib(n-2)#recursive statement
 
 def rem(f):
     memo={}
@@ -16,4 +16,4 @@ def rem(f):
 
 fibo=rem(fib)
 n=int(input('Enter which term of fibonacci sequence to find\n'))
-print(fibo(n))
+print(fibo(n))#recursive call
