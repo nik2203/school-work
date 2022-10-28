@@ -1,8 +1,8 @@
-def rev(st):#defining function
-    if len(st)==0:#if coditon to check the length of the string 
+def rev(st):
+    if len(st)==0:
         return st
     else:
-        return rev(st[1:])+st[0]#reverses the string 
+        return rev(st[1:])+st[0]
 
 st=input('Enter a string to reverse \n')
-print(rev(st))#calling function 
+print(rev(st))
