@@ -2,19 +2,19 @@ import datetime as dt
 
 #a
 
-a=lambda x,y:x*y
-x=int(input('Enter a number\n'))
-y=int(input('Enter a number\n'))
+a=lambda x,y:x*y   #using the lambda function(lambda arguments : expression)
+x=int(input('Enter a number\n'))#enter input
+y=int(input('Enter a number\n'))#enter input
 print(a(x,y))
 
 #b
 sw=lambda x,y:True if x.startswith(y) else False
-x=input('Enter the string\n')
-y=input('Enter the starting letter to check\n')
+x=input('Enter the string\n')#taking inputs
+y=input('Enter the starting letter to check\n')#taking the starting letter
 print(sw(x,y))
 
 #c
-now=dt.datetime.now()
+now=dt.datetime.now()#datetime function(imported)
 print('The system time is',now)
 year=lambda x:x.year
 month=lambda x:x.month

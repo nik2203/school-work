@@ -1,4 +1,4 @@
-def myreduce(func, itera):
+def myreduce(func, itera):#function which defines or works according to the reduce function
     it = iter(itera)
     val = next(it)
     for element in it:
