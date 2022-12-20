@@ -1,0 +1,81 @@
+html {
+    height: 100%;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+  .navbar{
+    top: 0;
+    position: fixed;
+  }
+
+  .about {
+    color: aliceblue;
+    font-size: 20px;
+    top: 100px;
+    margin: 20px;
+    padding: 25px;
+    width: 600px;
+    background: #7c8174;
+    box-sizing: border-box;
+    border-radius: 10px;
+    transform: translate(0px,5px);
+    text-align: center;
+    align-items: center;  
+  }
+
+
+  .team{
+    background-color: #7c8174;
+    color:aliceblue;
+    /*display: flex;*/
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    height: 400px;
+    width:900px;
+  }
+  
+  .row {
+    display: flex;
+  }
+  
+  .column {
+    flex: 33.33%;
+    padding: 30px;
+  }
+
+  
+.header{
+  font-weight: bold; 
+  font-style: italic;
+  font-size: 50px;
+}
+
+#nikhil{
+  width: 190px;
+}
+
+#charan{
+  width:190px;
+}
+  
+  .im1 {
+    width: 200px;
+    height: 250px;
+    border-radius: 50%;
+    padding-top: 5px;
+  }
+
+  a{
+    color:bisque;
+  }
+
+  a:hover{
+    color: white;
+  }
+  

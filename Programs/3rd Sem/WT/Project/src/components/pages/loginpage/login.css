@@ -1,0 +1,26 @@
+.login {
+    width: 400px;
+    background: #7c8174;
+    color:aliceblue;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    padding: 1rem;
+    align-items: center;
+    text-align: center;
+}
+
+.button:hover{
+    background-color: #353633;
+    color:aliceblue;
+}
+
+.input {
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    color: #1d2129;
+    margin: 0.5rem 0;
+    padding: 0.5rem 0.75rem;
+    width: 92%;
+    font-size: 1rem;
+}
