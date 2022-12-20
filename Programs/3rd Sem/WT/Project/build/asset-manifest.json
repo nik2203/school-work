@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/nik2203/online-library/static/css/main.863a7c51.css",
+    "main.js": "/nik2203/online-library/static/js/main.554da5ed.js",
+    "static/media/jinchi.png": "/nik2203/online-library/static/media/jinchi.c93ea0856a1e0ed785b5.png",
+    "index.html": "/nik2203/online-library/index.html",
+    "main.863a7c51.css.map": "/nik2203/online-library/static/css/main.863a7c51.css.map",
+    "main.554da5ed.js.map": "/nik2203/online-library/static/js/main.554da5ed.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.863a7c51.css",
+    "static/js/main.554da5ed.js"
+  ]
+}
