@@ -1,11 +1,23 @@
 .text
 LDR R0, =a
-LDR R1, =b
-CMP R0,R1
-ADDEQ R2, R0, R1
-SUBNE R2, R0, R1
+LDR R0, [R0]
+CMP R0, #0
 
+ZERO:
+    BNE NEGATIVE
+    MOV R1, #1
+    B end
+
+NEGATIVE:
+    BPL POS
+    MOV R1,#3
+    B end
+
+POS:
+    MOV R1, #2
+
+end:
 .data
-a: .word 20
-b: .word 40
+a: .word 0
+
 .end
