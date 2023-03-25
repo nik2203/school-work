@@ -1,19 +1,22 @@
-.text
-
-ldr r0,=a
-ldr r1,=b
-ldr r2,=c
-
-ldrh r3,[r0]
-ldrh r4,[r1]
-add r5,r3,r4
-strh r5,[r2]
-
 .data
-
-a: .hword 10 
-b: .hword 20 
-c: .hword 0
+a: .byte 10,20,30,40,50,60,70,80,90,100
+b: .byte 0
 
 
-.end
+.text
+LDR R0,=a
+LDR R1,=b
+MOV R4,#0
+MOV R5,#0
+
+l:
+LDRB R2,[R0]
+LDRB R3,[R1]
+ADD R4,R2,R3
+STRB R4,[R1]
+ADD R0,R0,#1
+ADD R5,R5,#1
+CMP R5, #10
+BNE l
+
+SWI 0x011

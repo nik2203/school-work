@@ -1,14 +1,19 @@
-.text
-LDR R0, =a
-LDR R1, =b
-LDR R4, =c
-LDR R0,[R0]
-LDR R1, [R1]
-ADD R3,R0,R1
-STR R3,[R4]
-
 .data
-a: .word 4
-b: .word 16
-c: .word 0
-.end
+a: .byte 1,2,3,4,5,6,7,8,9,10
+b: .byte 0,0,0,0,0,0,0,0,0,0
+
+
+.text
+LDR R0,=a
+LDR R1,=b
+MOV R4,#1
+l1:
+LDRB R3,[R0]
+STRB R3,[R1]
+ADD R0,R0,#1
+ADD R1,R1,#1
+ADD R4,R4,#1
+CMP R4, #11
+BNE l1
+
+SWI 0x011

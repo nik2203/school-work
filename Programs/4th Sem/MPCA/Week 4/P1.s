@@ -1,0 +1,18 @@
+.data
+a: .word 31258231, 67393412
+b: .word 12350294, 23401830
+c: .word 0,0
+
+.text
+LDR R0, =a
+LDR R1, =b
+LDR R2, =c
+LDR R4, [R0]
+LDR R5, [R1]
+ADD R4,R4,R5
+STR R4,[R2]
+LDR R4,[R0],#4
+LDR R5,[R1],#4
+ADD R5,R4,R5
+STR R5,[R2,#4]
+SWI 0x011
