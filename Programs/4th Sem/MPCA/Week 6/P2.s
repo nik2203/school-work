@@ -2,7 +2,7 @@
 .data
 
 a: .asciz "Hello World"
-b: .asciz "abcde fghij"
+b: .asciz "ABCDE EFGHI"
 
 .text
 LDR R0, =a

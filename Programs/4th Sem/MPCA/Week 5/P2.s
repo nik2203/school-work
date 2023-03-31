@@ -1,4 +1,4 @@
-@Write an ALP to implement C[k]=A[i]+B[j]
+@Write an ALP to implement C[i]=A[i]+B[j]
 
 .data
 a: .word 1,2,3,4,5

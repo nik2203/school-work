@@ -1,27 +1,25 @@
 .data
-a: .word 53
+arr: .word 0,3,-1,6,3,9,-4,-2,1,0
 
 .text
-LDR R0,=a
-LDR R0,[R0]
-MOV R1,#0 
-MOV R2,#0 
-MOV R3,#0 
-MOV R4,#0 
+LDR R0,=arr
+MOV R1,#0
+MOV R2,#0
+MOV R3,#0
+MOV R4,#0
+MOV R5,#0
+
 START:
-    CMP R3,#32
+    CMP R2,#10
     BEQ END
-    TST R0,#1
-    BEQ ZERO
+    LDR R1,[R0,R2,LSL#2]
+    CMP R1,#0
+    ADDEQ R3,R3,#1
+    ADDGT R4,R4,#1
+    ADDMI R5,R5,#1
     ADD R2,R2,#1
-    B CONTINUE
-ZERO:
-    ADD R1,R1,#1
-CONTINUE:
-    MOV R0,R0,LSR#1
-    ADD R3,R3,#1
     B START
 END:
-    MOV R3,#0
-    MOV R4,#0
+    MOV R1,#0
+    MOV R2,#0
     SWI 0x011

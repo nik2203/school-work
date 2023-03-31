@@ -1,5 +1,5 @@
 .data
-a: .word 69
+a: .word 20
 odd: .asciz "ODD PARITY"
 even: .asciz "EVEN PARIRY"
 

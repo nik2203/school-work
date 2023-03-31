@@ -1,5 +1,5 @@
 .data
-a: .word 11
+a: .word 20
 ODD: .ASCIZ "Odd Parity"
 EVEN: .ASCIZ "Even Parity"
 

@@ -1,7 +1,9 @@
 import socket
+from os import system
 from cryptography.fernet import Fernet
 
-localIP = '127.0.0.1'
+hn = socket.gethostname()
+localIP = socket.gethostbyname(hn)
 localPort = 20001
 bufferSize = 1024
 
@@ -10,7 +12,14 @@ while(True):
         ex = 'n'
         UDPServerSocket = socket.socket(family = socket.AF_INET , type = socket.SOCK_DGRAM)
         UDPServerSocket.bind((localIP,localPort))
-        print("UDP server up and listening")
+        system("cls")
+        print("===================================================")
+        print("==",end="")
+        print("\t    UDP server up and listening          ",end='')
+        print("==")
+        print("===================================================")
+        print("Note: You can only send one message at a time. Wait until the client message is received to send.\n")
+        print(f"Current IP is: {localIP}")
         bytesAddressPair = list(UDPServerSocket.recvfrom(bufferSize))
         key = bytesAddressPair[0]
         f = Fernet(key)
@@ -30,5 +39,3 @@ while(True):
         break
     except:
         print("\nSorry! We encountered an error! Please try again\n")
-
-

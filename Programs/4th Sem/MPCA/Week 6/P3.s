@@ -3,8 +3,8 @@
 .data
 a: .asciz "The dog jumped over the fox"
 search: .asciz "h" @For found, h
-f: .asciz "Character Found"
-nf: .asciz "Character Not Found"
+f: .asciz "Found"
+nf: .asciz "Not Found"
 
 .text
 LDR R0, =a
