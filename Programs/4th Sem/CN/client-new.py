@@ -1,60 +1,48 @@
 import socket
-from os import system
-from cryptography.fernet import Fernet
 import threading
+import os,time
 
-def receive_message():
+hn = socket.gethostname()
+localIP = socket.gethostbyname(hn)
+localPort = 20002
+
+s = socket.socket(socket.AF_INET , socket.SOCK_DGRAM )
+s.bind((localIP,localPort))
+
+
+os.system("cls")
+print("===================================================")
+print("==",end="")
+print("\t    Server up and listening          ",end='')
+print("==")
+print("===================================================")
+print("\t\tWelcome to U-chat\t\n")
+print(f"Your current IP is {localIP}:{localPort}")
+nm = input("What name do you want to use?: ")
+print(f"Welcome {nm}! We hope you enjoy using U-chat")
+print("\nTo exit, type \"quit\"")
+print("To disconnect, type \"disconnect\"")
+ip,port = input("To connect to someone, enter their IP address and port number: ").split()
+
+def send():
     while True:
-        try:
-            msgFromServer = list(UDPClientSocket.recvfrom(bufferSize))
-            msg = f.decrypt(msgFromServer[0])
-            msg = str(msg,'utf-8')
-            print(msg)
-        except:
-            break
+        ms = input("\t\t\t\t >> ")
+        if ms == "quit":
+            print("We're sad to see you go :(")
+            time.sleep(2)
+            print("Quitting now..")
+            time.sleep(1)
+            os._exit(1)
+        sm = "{}  : {}".format(nm,ms)
+        s.sendto(sm.encode() , (ip,int(port)))
 
-while True:
-    try:
-        ex = 'n'
-        serverAddressPort = (input("Enter the IP and port of the user to communicate with\n").split(','))
-        serverAddressPort[1] = int(serverAddressPort[1])
-        serverAddressPort = tuple(serverAddressPort)
-        bufferSize = 1024
-        disconnect = False
-        UDPClientSocket = socket.socket(family = socket.AF_INET, type = socket.SOCK_DGRAM)
-        key = Fernet.generate_key()
-        f = Fernet(key)
+def rec():
+    while True:
+        msg = s.recvfrom(1024)
+        print(">> " +  msg[0].decode()  )
+        print(">> ")
+x1 = threading.Thread( target = send )
+x2 = threading.Thread( target = rec )
 
-        # start receive message thread
-        receive_thread = threading.Thread(target=receive_message)
-        receive_thread.start()
-
-        while True:
-            system("cls")
-            print("===================================================")
-            print("==",end="")
-            print(f"    Successfully connected to {serverAddressPort[0]}\t ",end='')
-            print("==")
-            print("===================================================")
-            print("Note: You can send multiple messages.\n")
-            UDPClientSocket.sendto(key,serverAddressPort)
-            while not disconnect:
-                msgFromClient = input()
-                if msgFromClient.lower() == "disconnect":
-                    msgFromClient = f.encrypt(bytes(msgFromClient,'utf-8'))
-                    UDPClientSocket.sendto(msgFromClient,serverAddressPort)
-                    disconnect = True
-                    break
-                msgFromClient = f.encrypt(bytes(msgFromClient,'utf-8'))
-                UDPClientSocket.sendto(msgFromClient,serverAddressPort)
-
-            print("Successfully disconnected from user\n")
-            ex = input("Do you want to exit (Y/N)\n")
-            if ex.lower() == 'y':
-                break
-            else:
-                disconnect = False
-    except:
-        print("\nSorry! We encountered an error! Please try again\n")
-
-print("Successfully exited. Thank you for using our services.")
+x1.start()
+x2.start()

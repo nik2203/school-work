@@ -1,68 +1,86 @@
 import socket
-from os import system
+import threading
+import os,time
 from cryptography.fernet import Fernet
-from queue import Queue
-from threading import Thread
 
 hn = socket.gethostname()
 localIP = socket.gethostbyname(hn)
 localPort = 20001
 bufferSize = 1024
 
-# Create a queue to communicate between threads
-q = Queue()
+s = socket.socket(socket.AF_INET , socket.SOCK_DGRAM )
+s.bind((localIP,localPort))
 
-def receive_messages():
-    global q
-    UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-    UDPServerSocket.bind((localIP, localPort))
-    system("cls")
-    print("===================================================")
-    print("==", end="")
-    print("\t    UDP server up and listening          ", end='')
-    print("==")
-    print("===================================================")
-    print("Note: You can only send one message at a time. Wait until the client message is received to send.\n")
-    print(f"Current IP is: {localIP}")
-    bytesAddressPair = list(UDPServerSocket.recvfrom(bufferSize))
-    key = bytesAddressPair[0]
-    global f
-    f = Fernet(key)
+
+def send():
     while True:
-        bytesAddressPair = list(UDPServerSocket.recvfrom(bufferSize))
-        msgFromClient = f.decrypt(bytesAddressPair[0])
-        msgFromClient = str(msgFromClient, 'utf-8')
-        global address
-        address = bytesAddressPair[1]
-        if msgFromClient.lower() == "disconnect":
-            q.put("User disconnected\n")
-            break
-        q.put(msgFromClient)
-
-def send_messages():
-    global q
-    UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-    UDPServerSocket.bind((localIP, 0))
+        ms = input("\t\t\t\t >> ")
+        if ms.lower() == "quit":  
+            print("We're sad to see you go :(")
+            time.sleep(1)
+            print("Quitting now..")
+            time.sleep(1)
+            os._exit(1)
+        sm = "{}: {}".format(nm,ms)
+        sm = send1.encrypt(bytes(sm,'utf-8'))
+        s.sendto(sm,(ip,int(port)))
+        print("\n")
+    
+def rec():
     while True:
-        # Wait for a message to send
-        msgFromServer = q.get()
-        if msgFromServer.lower() == "disconnect":
-            msgFromServer = f.encrypt(bytes(msgFromServer, 'utf-8'))
-            UDPServerSocket.sendto(msgFromServer, address)
-            break
-        msgFromServer = f.encrypt(bytes(msgFromServer, 'utf-8'))
-        UDPServerSocket.sendto(msgFromServer, address)
-        
-# Start the receive_messages thread
-recv_thread = Thread(target=receive_messages)
-recv_thread.start()
+        msg = s.recvfrom(bufferSize)
+        msg = str(rec1.decrypt(msg[0]),'utf-8')
+        print(">>" + msg+"\n")
 
-# Start the send_messages thread
-send_thread = Thread(target=send_messages)
-send_thread.start()
+def send_key():
+    sen_key = Fernet.generate_key()
+    f1 = Fernet(sen_key)
+    s.sendto(sen_key,(ip,int(port)))
+    return f1
 
-# Wait for the threads to finish
-recv_thread.join()
-send_thread.join()
+def rec_key():
+    recv_key = list(s.recvfrom(bufferSize))[0]
+    f2 = Fernet(recv_key)
+    return f2
 
-print("Successfully exited. Thank you for using our services.")
+os.system("cls")
+print("===================================================")
+print("==\t\t\t\t\t\t ==")
+print("==",end='')
+print("\t\tWelcome to U-chat\t\t ",end='')
+print("==")
+print("==\t\t\t\t\t\t ==")
+print("===================================================\n")
+print("\t    Server is up and listening\t\n")
+print("\n===================================================\n")
+print(f"Your current IP is {localIP}:{localPort}")
+print("\n===================================================\n")
+nm = input("What name do you want to use?: ")
+print("\n===================================================\n")
+os.system("cls")
+print("===================================================")
+print("==\t\t\t\t\t\t ==\n")
+print(f"  Welcome {nm}! We hope you enjoy using U-chat  ",end='')
+print("\n")
+print("==\t\t\t\t\t\t ==")
+print("===================================================\n")
+print("\nTo exit, type \"quit\"")
+print("\n==================================================\n")
+ip,port = input("To connect to someone, enter their IP address and port number: ").split()
+print("Successfully connected\n")
+os.system("cls")
+print("========================================================")
+print("==\t\t\t\t\t\t      ==")
+print("==",end='')
+print(f"  Say hi! You're now talking to {ip}:{port}  ",end='')
+print("==")
+print("==\t\t\t\t\t\t      ==")
+print("========================================================\n")
+global send1
+send1 = send_key()
+global rec1
+rec1 = rec_key()
+x1 = threading.Thread( target = send )
+x2 = threading.Thread( target = rec )
+x1.start()
+x2.start()
