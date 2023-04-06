@@ -7,13 +7,12 @@ localIP = socket.gethostbyname(hn)
 localPort = 20002
 
 s = socket.socket(socket.AF_INET , socket.SOCK_DGRAM )
-s.bind((localIP,localPort))
 
 
 os.system("cls")
 print("===================================================")
 print("==",end="")
-print("\t    Server up and listening          ",end='')
+print("\t    Client up and listening          ",end='')
 print("==")
 print("===================================================")
 print("\t\tWelcome to U-chat\t\n")
