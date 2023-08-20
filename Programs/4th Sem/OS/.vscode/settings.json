@@ -33,5 +33,10 @@
     "**/.vscode",
     "**/.vscode/**"
   ],
-  "C_Cpp_Runner.useAddressSanitizer": false
+  "C_Cpp_Runner.useAddressSanitizer": false,
+  "files.associations": {
+    "4F_PES2UG21CS334_P1.C": "cpp",
+    "4F_PES2UG21CS334_P2.C": "cpp"
+  },
+  "C_Cpp_Runner.showCompilationTime": false
 }

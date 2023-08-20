@@ -4,7 +4,7 @@ import {
     faYoutube,
     faFacebook,
     faTwitter,
-    faInstagram
+    faInstagram,
   } from "@fortawesome/free-brands-svg-icons";
 import "./socialfollow.css"
 
